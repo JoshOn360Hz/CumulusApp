@@ -18,9 +18,6 @@ A beautiful, modern iOS weather app built with SwiftUI and WeatherKit. Cumulus p
 
 ## Screenshots
 
-*(Optional: Add screenshots here, or use Markdown image syntax.)*
-
-```markdown
-![Home Screen](screenshots/home-screen.png)
-![Forecast Details](screenshots/forecast-details.png)
-![Widgets](screenshots/widgets.png)
+![Night](screenshots/california.png)
+![Cloud](screenshots/bristol.png)
+![Rain](screenshots/madrid.png)
