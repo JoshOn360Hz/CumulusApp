@@ -1,6 +1,6 @@
 # Cumulus
 
-A beautiful, modern iOS weather app built with SwiftUI and WeatherKit. Cumulus provides accurate and hyperlocal forecasts, easy-to-read weather cards, and customizable widgets.
+A beautiful, modern iOS and MacOS weather app built with SwiftUI and WeatherKit. Cumulus provides accurate and hyperlocal forecasts, easy-to-read weather cards, and customizable widgets.
 
 ---
 
