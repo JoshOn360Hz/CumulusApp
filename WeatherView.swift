@@ -23,9 +23,9 @@ struct AppleWeatherAttributionView: View {
 struct WeatherView: View {
     @StateObject private var weatherViewModel = WeatherViewModel()
     @StateObject private var locationManager = LocationManager()
-    
     @State private var showSearch = false
     @State private var isUsingManualLocation = false
+    @State private var showIconPicker = false
 
     
     var body: some View {
@@ -100,7 +100,15 @@ struct WeatherView: View {
                         .padding(.top, 20)
                         .padding(.horizontal)
                         
-                        
+                        Button("Change App Icon") {
+                            showIconPicker = true
+                        }
+                        .buttonStyle(GlassButtonStyle())
+                        .padding(.top, 20)
+                        .padding(.horizontal)
+                        .sheet(isPresented: $showIconPicker) {
+                            IconPickerSheet(showSheet: $showIconPicker)
+                        }
                         
                         
                     } else {
@@ -147,6 +155,7 @@ struct WeatherView: View {
                 }
             }
         }
+        
     }
     
     // MARK: - Subviews
@@ -223,5 +232,6 @@ struct WeatherView: View {
         return location
     }
 }
+
 
 
