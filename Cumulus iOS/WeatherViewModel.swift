@@ -371,7 +371,7 @@ class WeatherViewModel: ObservableObject {
             return isDaytime ?
                 LinearGradient(gradient: Gradient(colors: [Color.gray, Color.white]),
                                startPoint: .top, endPoint: .bottom)
-                : LinearGradient(gradient: Gradient(colors: [Color.black, Color.gray]),
+                : LinearGradient(gradient: Gradient(colors: [Color.black, Color.indigo]),
                                  startPoint: .top, endPoint: .bottom)
             
         } else {
@@ -379,8 +379,7 @@ class WeatherViewModel: ObservableObject {
             return isDaytime ?
                 LinearGradient(gradient: Gradient(colors: [Color.blue, Color.cyan]),
                                startPoint: .top, endPoint: .bottom)
-                : LinearGradient(gradient: Gradient(colors: [Color.black, Color.gray]),
-                                 startPoint: .top, endPoint: .bottom)
+                :   LinearGradient(colors: [Color.black, Color.indigo], startPoint: .top, endPoint: .bottom)
         }
     }
 }

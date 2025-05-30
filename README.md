@@ -13,6 +13,9 @@ A beautiful, modern iOS and MacOS weather app built with SwiftUI and WeatherKit.
 - **SwiftUI**: A clean, modern UI with smooth animations.
 - **WeatherKit Integration**: High-quality, real-time weather data from Apple’s WeatherKit.
 - **Dark Mode Support**: Adapts beautifully to your device’s appearance settings.
+- **Custom app icons**: Tailor made app icons using Apples alternate icon system.
+- **Widgets**: SwiftUI and widgetkit widgets.
+
 
 ---
 

@@ -1,6 +1,7 @@
 import SwiftUI
 import WeatherKit
 import CoreLocation
+import WidgetKit
 
 struct AppleWeatherAttributionView: View {
     var condition: String
@@ -155,7 +156,23 @@ struct WeatherView: View {
                 }
             }
         }
-        
+        .onChange(of: weatherViewModel.weather) { newWeather in
+            guard let weather = newWeather else { return }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                let sharedWeather = SharedWeather(
+                    temperature: weather.currentWeather.temperature.converted(to: .celsius).value,
+                    condition: weather.currentWeather.condition.description,
+                    symbolName: weather.currentWeather.symbolName,
+                    isDaytime: weather.currentWeather.isDaylight,
+                    location: weatherViewModel.cityName
+                )
+                
+                saveWeatherToSharedDefaults(weather: sharedWeather)
+                
+                WidgetCenter.shared.reloadTimelines(ofKind: "WeatherWidget")
+            }
+        }
     }
     
     // MARK: - Subviews
@@ -235,3 +252,13 @@ struct WeatherView: View {
 
 
 
+func saveWeatherToSharedDefaults(weather: SharedWeather) {
+    if let data = try? JSONEncoder().encode(weather) {
+        let defaults = UserDefaults(suiteName: "group.com.josh.cumulus")
+        defaults?.set(data, forKey: "currentWeather")
+        
+        print("Weather saved to shared defaults.")
+    } else {
+        print("Failed to encode weather.")
+    }
+}

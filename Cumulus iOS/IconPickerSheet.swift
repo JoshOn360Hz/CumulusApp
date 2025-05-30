@@ -21,7 +21,6 @@ struct IconPickerSheet: View {
         ("Fox", "icon-fox"),
         ("Penguin", "icon-penguin"),
         ("Shark", "icon-shark")
-        
     ]
 
     var body: some View {
@@ -67,10 +66,6 @@ struct IconPickerSheet: View {
                                             .aspectRatio(1, contentMode: .fit)
                                             .cornerRadius(16)
                                             .frame(width: 72, height: 72)
-                                            .overlay(
-                                                RoundedRectangle(cornerRadius: 16)
-                                                    .stroke(option.filename == currentIcon ? Color.blue : Color.clear, lineWidth: 3)
-                                            )
 
                                         Text(option.name)
                                             .font(.caption)
@@ -79,6 +74,10 @@ struct IconPickerSheet: View {
                                     .padding()
                                     .background(Color.white.opacity(0.1))
                                     .clipShape(RoundedRectangle(cornerRadius: 20))
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 20)
+                                            .stroke(option.filename == currentIcon ? Color.blue : Color.clear, lineWidth: 3)
+                                    )
                                 }
                             }
                         }

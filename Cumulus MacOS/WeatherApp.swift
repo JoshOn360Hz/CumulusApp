@@ -12,5 +12,6 @@ struct WeatherApp: App {
                 SplashScreenView()
             }
         }
+        .windowStyle(HiddenTitleBarWindowStyle()) 
     }
 }
