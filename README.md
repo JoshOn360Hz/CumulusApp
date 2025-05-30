@@ -19,6 +19,12 @@ A beautiful, modern iOS and MacOS weather app built with SwiftUI and WeatherKit.
 
 ---
 
+## Making app icons
+
+- Included in the repo is an icon-templates folder with the photoshop files and layers ( glyph and background ) to make icons for Cumulus.
+
+---
+
 ## Screenshots
 
 ![Night](screenshots/california.png)
