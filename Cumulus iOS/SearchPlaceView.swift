@@ -85,7 +85,7 @@ struct SearchPlaceView: View {
                             TextField("Search for a City", text: $searchText, onCommit: {
                                 performSearch()
                             })
-                            .multilineTextAlignment(.center)            // Center the text itself
+                            .multilineTextAlignment(.center)
                             .focused($searchFieldFocused)
                             .font(.title3)
                             .foregroundColor(.white)
@@ -93,7 +93,7 @@ struct SearchPlaceView: View {
                             .padding(.horizontal, 20)
                             .background(Color.white.opacity(0.2))
                             .clipShape(Capsule())
-                            .frame(maxWidth: .infinity, alignment: .center) // Center the whole field in its container
+                            .frame(maxWidth: .infinity, alignment: .center) 
                             
                             if !searchText.isEmpty {
                                 Button(action: {
@@ -129,7 +129,7 @@ struct SearchPlaceView: View {
                                     }
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                         isPresented = false
-                                        additionalOffset = 0 // Reset for next use
+                                        additionalOffset = 0
                                     }
                                 }
                         }
@@ -143,12 +143,11 @@ struct SearchPlaceView: View {
                         RoundedTopCornersShape(cornerRadius: 20)
                             .stroke(Color.white.opacity(0.3), lineWidth: 1)
                     )
-                    // Apply an extra offset when the keyboard is dismissed.
                     .offset(y: dragOffset + additionalOffset + (keyboardHeight == 0 ? hiddenOffset : 0))
                     .gesture(
                         DragGesture()
                             .updating($dragOffset) { value, state, _ in
-                                // If dragging downward more than 40 points, dismiss the keyboard.
+                               
                                 if value.translation.height > 40 {
                                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                                 }
@@ -176,7 +175,6 @@ struct SearchPlaceView: View {
             }
             .onReceive(Publishers.keyboardHeight) { height in
                 withAnimation(.easeOut(duration: 0.25)) {
-                    // Adjust using a multiplier as needed.
                     self.keyboardHeight = height * 0.001
                 }
             }

@@ -268,8 +268,7 @@ class WeatherViewModel: ObservableObject {
     func backgroundGradient() -> LinearGradient {
         guard let weather = weather else {
             // If we have no weather data, default to gray -> black
-            return LinearGradient(gradient: Gradient(colors: [.gray, .black]),
-                                  startPoint: .top, endPoint: .bottom)
+            return LinearGradient(colors: [Color.black, Color.indigo], startPoint: .top, endPoint: .bottom)
         }
         
         let isDaytime = weather.currentWeather.isDaylight
@@ -326,8 +325,11 @@ class WeatherViewModel: ObservableObject {
             
         } else if symbol.contains("fog") || symbol.contains("mist") {
             return isDaytime ?
-                LinearGradient(gradient: Gradient(colors: [Color.gray, Color.white.opacity(0.6)]),
-                               startPoint: .top, endPoint: .bottom)
+            LinearGradient(
+                gradient: Gradient(colors: [Color.blue.opacity(0.4), Color.gray.opacity(0.6)]),
+                startPoint: .top,
+                endPoint: .bottom
+            )
                 : LinearGradient(gradient: Gradient(colors: [Color.black, Color.gray]),
                                  startPoint: .top, endPoint: .bottom)
             
@@ -347,8 +349,11 @@ class WeatherViewModel: ObservableObject {
             
         } else if symbol.contains("cloud.sun") {
             return isDaytime ?
-                LinearGradient(gradient: Gradient(colors: [Color.gray, Color.white]),
-                               startPoint: .top, endPoint: .bottom)
+            LinearGradient(
+                gradient: Gradient(colors: [Color.blue.opacity(0.4), Color.gray.opacity(0.6)]),
+                startPoint: .top,
+                endPoint: .bottom
+            )
                 : LinearGradient(gradient: Gradient(colors: [Color.black, Color.gray]),
                                  startPoint: .top, endPoint: .bottom)
             
@@ -369,13 +374,15 @@ class WeatherViewModel: ObservableObject {
             
         } else if symbol.contains("cloud") {
             return isDaytime ?
-                LinearGradient(gradient: Gradient(colors: [Color.gray, Color.white]),
-                               startPoint: .top, endPoint: .bottom)
+            LinearGradient(
+                gradient: Gradient(colors: [Color.blue.opacity(0.4), Color.gray.opacity(0.6)]),
+                startPoint: .top,
+                endPoint: .bottom
+            )
                 : LinearGradient(gradient: Gradient(colors: [Color.black, Color.indigo]),
                                  startPoint: .top, endPoint: .bottom)
             
         } else {
-            // Default fallback
             return isDaytime ?
                 LinearGradient(gradient: Gradient(colors: [Color.blue, Color.cyan]),
                                startPoint: .top, endPoint: .bottom)
@@ -383,4 +390,5 @@ class WeatherViewModel: ObservableObject {
         }
     }
 }
+
 

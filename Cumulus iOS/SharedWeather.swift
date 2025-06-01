@@ -13,5 +13,6 @@ struct SharedWeather: Codable {
     let symbolName: String
     let isDaytime: Bool
     let location: String
+    let windSpeed: Double
+    let humidity: Double
 }
-

@@ -7,7 +7,6 @@ struct WeatherApp: App {
     @State private var showSplash = false
 
     init() {
-        // Set flags based on app state
         let firstLaunch = !UserDefaults.standard.bool(forKey: "hasLaunchedBefore")
         let newVersion = AppVersionManager.isNewVersion()
 
@@ -18,16 +17,13 @@ struct WeatherApp: App {
     var body: some Scene {
         WindowGroup {
             if showSplash {
-                SplashScreenView()
-                    .onAppear {
-                        hasLaunchedBefore = true
-                        UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                            showSplash = false
-                        }
-                    }
+                SplashScreenView {
+                    hasLaunchedBefore = true
+                    UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
+                    showSplash = false
+                }
             } else {
-                WeatherView()
+                WeatherView(showSplash: $showSplash)
                     .sheet(isPresented: $showWhatsNew) {
                         WhatsNewSheet(showSheet: $showWhatsNew)
                     }

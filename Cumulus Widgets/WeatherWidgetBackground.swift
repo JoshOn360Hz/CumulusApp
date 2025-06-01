@@ -39,8 +39,11 @@ func backgroundGradient(for symbol: String, isDaytime: Bool) -> LinearGradient {
        
    } else if symbol.contains("cloud") {
        return isDaytime ?
-           LinearGradient(gradient: Gradient(colors: [Color.gray, Color.gray]),
-                          startPoint: .top, endPoint: .bottom)
+       LinearGradient(
+           gradient: Gradient(colors: [Color.blue.opacity(0.4), Color.gray.opacity(0.6)]),
+           startPoint: .top,
+           endPoint: .bottom
+       )
            : LinearGradient(colors: [Color.black, Color.indigo], startPoint: .top, endPoint: .bottom)
        
    } else if symbol.contains("wind") {

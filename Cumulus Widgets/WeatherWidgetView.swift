@@ -14,7 +14,9 @@ struct WeatherWidgetView: View {
                 condition: "Mostly Clear",
                 symbolName: "moon.stars",
                 isDaytime: false,
-                location: "London"
+                location: "London",
+                windSpeed: 2.0,       
+                humidity: 0.6
             )
             widgetBody(for: fallback)
         }
@@ -26,6 +28,9 @@ struct WeatherWidgetView: View {
             backgroundGradient(for: weather.symbolName, isDaytime: weather.isDaytime)
 
             switch family {
+                
+// small widget
+                
             case .systemSmall:
                 VStack(spacing: 4) {
                     Image(systemName: getWeatherIcon(for: weather.symbolName))
@@ -42,8 +47,11 @@ struct WeatherWidgetView: View {
                 }
 
             case .systemMedium:
+                
+// medium widget
+                
                 VStack(spacing: 8) {
-                    Text(weather.location)
+                    Text(weather.location.components(separatedBy: ",").first ?? weather.location)
                         .font(.caption)
                         .foregroundColor(.white)
 
@@ -55,7 +63,52 @@ struct WeatherWidgetView: View {
                         .font(.body)
                         .foregroundColor(.white.opacity(0.8))
                 }
+            case .systemLarge:
+                
+// large widget
+                
+                ZStack {
+                    backgroundGradient(for: weather.symbolName, isDaytime: weather.isDaytime)
 
+                    Color.clear
+
+                    // Widget content
+                    VStack(spacing: 16) {
+                        Text(weather.location.components(separatedBy: ",").first ?? weather.location)
+                            .font(.title2)
+                            
+
+                        Image(systemName: getWeatherIcon(for: weather.symbolName))
+                            .font(.system(size: 60))
+
+                        Text("\(Int(weather.temperature))°")
+                            .font(.system(size: 50, weight: .semibold))
+
+                        Text(weather.condition)
+                            .font(.title3)
+                            .foregroundColor(.white.opacity(0.7))
+
+                        HStack {
+                            VStack {
+                                Text("Wind")
+                                    .font(.caption)
+                                    .foregroundColor(.white.opacity(0.7))
+                                Text("\(Int(weather.windSpeed)) km/h")
+                            }
+                            Spacer()
+                            VStack {
+                                Text("Humidity")
+                                    .font(.caption)
+                                    .foregroundColor(.white.opacity(0.7))
+                                Text("\(Int(weather.humidity * 100))%")                            }
+                        }
+                        .padding(.horizontal, 32)
+                    }
+                    .padding()
+                    .foregroundColor(.white.opacity(0.7))
+
+                    .containerBackground(for: .widget) { backgroundGradient(for: weather.symbolName, isDaytime: weather.isDaytime) }
+                }
             default:
                 Text("Unsupported Size")
                     .foregroundColor(.white)

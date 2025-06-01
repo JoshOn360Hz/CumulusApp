@@ -1,6 +1,5 @@
 import SwiftUI
 
-
 extension Color {
     static func weatherColor(for condition: String?) -> Color {
         if let condition = condition?.lowercased(), condition.contains("cloud") {
@@ -14,31 +13,28 @@ struct HourlyForecastCardView: View {
     let hourlyForecast: [HourlyForecast]
     let locationTimeZone: TimeZone?
 
-// MARK: - Container for the hourly forecast , using a vertical stack and scrollview
-    
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 16) {
                 ForEach(hourlyForecast) { hour in
                     VStack(spacing: 8) {
-
                         Text(formattedHour(hour.time, in: locationTimeZone))
                             .font(.headline)
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
-                        
+
                         Image(systemName: getWeatherIcon(for: hour.symbolName))
                             .font(.title)
                             .foregroundColor(.white)
                             .frame(width: 40, height: 40)
-                        
-                        Text("\(Int(hour.temperature))°")
+
+                        Text(formatCardTemperature(hour.temperature))
                             .font(.subheadline)
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
                     }
                     .padding(.vertical, 10)
-                    .frame(width: 60) // width of each hourly cell
+                    .frame(width: 60)
                 }
             }
             .padding(.horizontal, 10)
@@ -52,8 +48,7 @@ struct HourlyForecastCardView: View {
         )
         .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 4)
     }
-    
-    // MARK: - helper function to format the weather data to fit the timezone
+
     private func formattedHour(_ date: Date, in timeZone: TimeZone?) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "ha"
@@ -62,19 +57,20 @@ struct HourlyForecastCardView: View {
     }
 }
 
-// MARK: Daily forecast card
 struct ForecastDayView: View {
     let forecast: ForecastDay
-    
+
     var body: some View {
         VStack(spacing: 8) {
             Text(forecast.day)
                 .font(.headline)
                 .foregroundColor(.white)
+
             Image(systemName: forecast.iconName)
                 .font(.title)
                 .foregroundColor(.white)
-            Text("\(forecast.highTemperature, specifier: "%.0f")°")
+
+            Text(formatCardTemperature(forecast.highTemperature))
                 .font(.subheadline)
                 .foregroundColor(.white)
         }
@@ -84,6 +80,3 @@ struct ForecastDayView: View {
         .clipShape(Capsule())
     }
 }
-
-
-

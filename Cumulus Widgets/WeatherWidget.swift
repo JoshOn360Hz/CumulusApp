@@ -13,7 +13,9 @@ struct WeatherProvider: TimelineProvider {
             condition: "Sunny",
             symbolName: "sun.max",
             isDaytime: true,
-            location: "London"
+            location: "London",
+            windSpeed: 2.0,
+            humidity: 0.6
         ))
     }
 
@@ -23,7 +25,9 @@ struct WeatherProvider: TimelineProvider {
             condition: "Partly Cloudy",
             symbolName: "cloud.sun",
             isDaytime: true,
-            location: "London"
+            location: "London",
+            windSpeed: 2.0,
+            humidity: 0.6
         )
 
         let entry = WeatherEntry(date: Date(), weather: dummyWeather)
@@ -36,7 +40,9 @@ struct WeatherProvider: TimelineProvider {
             condition: "Sunny",
             symbolName: "sun.max",
             isDaytime: true,
-            location: "London"
+            location: "London",
+            windSpeed: 2.0,
+            humidity: 0.6
         )
 
         let entry = WeatherEntry(date: Date(), weather: weather)

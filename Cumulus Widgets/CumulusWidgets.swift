@@ -45,7 +45,7 @@ struct WeatherWidget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             WeatherWidgetView(entry: entry)
         }
-        .supportedFamilies([.systemSmall, .systemMedium])
+        .supportedFamilies([.systemSmall, .systemMedium,.systemLarge])
         .contentMarginsDisabled()
         .configurationDisplayName("Weather Snapshot")
         .description("Shows the current temp and condition.")

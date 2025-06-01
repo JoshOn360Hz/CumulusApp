@@ -23,13 +23,13 @@ struct ForecastCardView: View {
                     
                     Spacer(minLength: 8)
                     
-                    // Temperature
-                    Text("\(day.highTemperature, specifier: "%.0f")°")
+                    // Formatted temperature
+                    Text(formatCardTemperature(day.highTemperature))
                         .font(.subheadline)
                         .foregroundColor(.white)
                         .frame(height: 24, alignment: .top)
                 }
-                .frame(maxWidth: .infinity) 
+                .frame(maxWidth: .infinity)
             }
         }
         .frame(width: 315)

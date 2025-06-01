@@ -52,8 +52,8 @@ struct FeelsLikeCardView: View {
             Image(systemName: "thermometer")
                 .font(.title)
                 .foregroundColor(.white)
-            let tempValue = feelsLike.value
-            Text("\(tempValue, specifier: "%.0f")°")
+            
+            Text(formatCardTemperature(feelsLike.value))
                 .font(.title2)
                 .foregroundColor(.white)
         }

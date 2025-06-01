@@ -41,15 +41,19 @@ struct WhatsNewSheet: View {
                     }
 
                 // Title
-                Text("New in version 1.5")
+                Text("New in version 2.0")
                     .font(.largeTitle.bold())
                     .foregroundColor(.white)
                     .padding(.top, 20)
 
                 // Feature list
                 VStack(alignment: .leading, spacing: 20) {
-                    Label("2 new Widgets", systemImage: "square.grid.2x2.fill")
-                    Label("Custom App Icons", systemImage: "app.fill")
+                    Label("1 new large widget", systemImage: "square.grid.2x2.fill")
+                    Label("Choose °C or °F in Settings", systemImage: "thermometer")
+                    Label("Choose an app icon in Settings ", systemImage: "app.fill")
+                    Label("New horizontal layout for iPad", systemImage: "ipad.landscape")
+                    Label("Revised gradients for a fresh new look", systemImage: "paintbrush.pointed.fill")
+
                 }
                 .foregroundColor(.white)
                 .font(.headline)
