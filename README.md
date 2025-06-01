@@ -22,13 +22,13 @@ Cumulus provides accurate and hyperlocal forecasts, easy-to-read weather cards, 
 
 <table>
   <tr>
-    <td align="center"><img src="screenshots/bristol.png" width="200"/><br><b>Cloudy – Bristol (iPhone)</b></td>
-    <td align="center"><img src="screenshots/california.png" width="200"/><br><b>Clear Night – Cupertino (iPhone)</b></td>
-    <td align="center"><img src="screenshots/madrid.png" width="200"/><br><b>Rain – Madrid (iPhone)</b></td>
+    <td align="center"><img src="screenshots/bristol.png" width="200"></td>
+    <td align="center"><img src="screenshots/california.png" width="200"></td>
+    <td align="center"><img src="screenshots/madrid.png" width="200"></td>
   </tr>
   <tr>
-    <td align="center"><img src="screenshots/California-ipad.png" width="320"/><br><b>Daytime – Cupertino (iPad)</b></td>
-    <td align="center"><img src="screenshots/sydney-ipad.png" width="320"/><br><b>Night – Sydney (iPad)</b></td>
+    <td align="center"><img src="screenshots/California-ipad.png" width="320"></td>
+    <td align="center"><img src="screenshots/sydney-ipad.png" width="320"></td>
   </tr>
 </table>
 
@@ -56,4 +56,5 @@ Use these to generate your own alternate icons!
 ## Download
 
 [![Download on the App Store](screenshots/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg)](https://apps.apple.com/gb/app/cumulus/id6742735497)
+
 
