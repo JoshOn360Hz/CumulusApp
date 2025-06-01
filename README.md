@@ -24,7 +24,6 @@ Cumulus provides accurate and hyperlocal forecasts, easy-to-read weather cards, 
   <tr>
     <td align="center"><img src="screenshots/bristol.png" width="200"></td>
     <td align="center"><img src="screenshots/california.png" width="200"></td>
-    <td align="center"><img src="screenshots/madrid.png" width="200"></td>
   </tr>
   <tr>
     <td align="center"><img src="screenshots/California-ipad.png" width="320"></td>
