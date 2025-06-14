@@ -5,6 +5,10 @@ Cumulus provides accurate and hyperlocal forecasts, easy-to-read weather cards, 
 
 ---
 
+# Beta Versions
+
+Currently in development - Beta for version 3.0 is available as a .ipa and as an xcodeproj in the Beta ( iOS 26 ) folder. This beta brings many new features such as a WatchOS app and also a compleately refactored codebase, prioritising modularity and maintainability. This beta also switches to the stock iOS tab view and implements many " liquid glass " design features
+
 ## Features
 
 - **Current Weather**: Temperature, feels-like, precipitation, wind, visibility, UV index, and more.
