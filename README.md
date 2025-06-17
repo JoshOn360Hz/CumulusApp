@@ -7,6 +7,10 @@
   <a href="https://apps.apple.com/gb/app/cumulus/id6742735497">
     <img src="screenshots/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" alt="Download on the App Store" height="40">
   </a>
+  &nbsp;&nbsp;
+  <a href="https://testflight.apple.com/join/3FTY37Fg">
+    <img src="https://img.shields.io/badge/Join-TestFlight-blue?logo=apple&logoColor=white&style=for-the-badge" alt="Join TestFlight Beta" height="40">
+  </a>
   <br>
   
   <img src="https://img.shields.io/badge/Platform-iOS%20%7C%20iPadOS%20%7C%20macOS%20%7C%20watchOS-blue" alt="Platform iOS, iPadOS, macOS, watchOS">
@@ -56,7 +60,10 @@ Currently in development with the following enhancements:
 - Implementation of "liquid glass" design elements throughout the UI
 - Performance improvements and optimizations
 
-Beta is available as a `.ipa` file in the Beta directory or as an Xcode project you can build yourself.
+**Try the beta:**
+- [Join TestFlight](https://testflight.apple.com/join/3FTY37Fg) - Get early access to the latest features
+- Available as a `.ipa` file in the Beta directory
+- Clone this repository and build the Xcode project yourself
 
 ## Custom Icons
 
