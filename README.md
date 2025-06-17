@@ -12,6 +12,7 @@
     <img src="https://img.shields.io/badge/Join-TestFlight-blue?logo=apple&logoColor=white&style=for-the-badge" alt="Join TestFlight Beta" height="40">
   </a>
   <br>
+  <br>
   
   <img src="https://img.shields.io/badge/Platform-iOS%20%7C%20iPadOS%20%7C%20macOS%20%7C%20watchOS-blue" alt="Platform iOS, iPadOS, macOS, watchOS">
   <img src="https://img.shields.io/badge/Swift-5.10-orange" alt="Swift 5.10">
