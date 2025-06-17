@@ -1,7 +1,7 @@
 # Cumulus
 
 <div align="center">
-  <img src="Stable ( iOS 18 )/Cumulus iOS/icon-blue@2x.png" width="120" height="120">
+  <img src="Beta/Cumulus/App icons/icon-glass-picker@3x.png" width="120" height="120">
   <br><br>
 
   <a href="https://apps.apple.com/gb/app/cumulus/id6742735497">
@@ -61,10 +61,10 @@ Beta is available as a `.ipa` file in the Beta directory or as an Xcode project 
 ## Custom Icons
 
 <p align="center">
-  <img src="Stable ( iOS 18 )/Cumulus iOS/icon-blue@2x.png" width="60">
-  <img src="Stable ( iOS 18 )/Cumulus iOS/icon-purple@2x.png" width="60">
-  <img src="Stable ( iOS 18 )/Cumulus iOS/icon-green@2x.png" width="60">
-  <img src="Stable ( iOS 18 )/Cumulus iOS/icon-red@2x.png" width="60">
+  <img src="Beta/Cumulus/App icons/icon-blue@3x.png" width="60">
+  <img src="Beta/Cumulus/App icons/icon-purple@3x.png" width="60">
+  <img src="Beta/Cumulus/App icons/icon-green@3x.png" width="60">
+  <img src="Beta/Cumulus/App icons/icon-glass-picker@3x.png" width="60">
 </p>
 
 Cumulus comes with multiple custom app icons. Additionally, you can create your own:
