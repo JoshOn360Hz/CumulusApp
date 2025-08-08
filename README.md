@@ -70,8 +70,8 @@ Currently in development with the following enhancements:
 
 <p align="center">
   <img src="Beta/Assets.xcassets/icon-blue-preview.imageset/icon-blue-preview@3x.png" width="60">
-  <img src="Beta/Assets.xcassets/icon-purple-preview.imageset/icon-purple-preview@3x.png" width="60">
-  <img src="Beta/Assets.xcassets/icon-green-preview.imageset/icon-green-preview@3x.png" width="60">
+  <img src="screenshots/icon-purple@3x.png" width="60">
+  <img src="screenshots/icon-green@3x.png" width="60">
   <img src="Beta/Assets.xcassets/icon-glass-picker.appiconset/icon-glass-picker@3x.png" width="60">
 </p>
 
