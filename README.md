@@ -1,7 +1,7 @@
 # Cumulus
 
 <div align="center">
-  <img src="Beta/Cumulus/App icons/icon-glass-picker@3x.png" width="120" height="120">
+  <img src="Beta/Assets.xcassets/applogo.imageset/icon-glass-picker@3x.png" width="120" height="120">
   <br><br>
 
   <a href="https://apps.apple.com/gb/app/cumulus/id6742735497">
@@ -69,10 +69,10 @@ Currently in development with the following enhancements:
 ## Custom Icons
 
 <p align="center">
-  <img src="Beta/Cumulus/App icons/icon-blue@3x.png" width="60">
-  <img src="Beta/Cumulus/App icons/icon-purple@3x.png" width="60">
-  <img src="Beta/Cumulus/App icons/icon-green@3x.png" width="60">
-  <img src="Beta/Cumulus/App icons/icon-glass-picker@3x.png" width="60">
+  <img src="Beta/Assets.xcassets/icon-blue-preview.imageset/icon-blue-preview@3x.png" width="60">
+  <img src="Beta/Assets.xcassets/icon-purple-preview.imageset/icon-purple-preview@3x.png" width="60">
+  <img src="Beta/Assets.xcassets/icon-green-preview.imageset/icon-green-preview@3x.png" width="60">
+  <img src="Beta/Assets.xcassets/icon-glass-picker.appiconset/icon-glass-picker@3x.png" width="60">
 </p>
 
 Cumulus comes with multiple custom app icons. Additionally, you can create your own:
