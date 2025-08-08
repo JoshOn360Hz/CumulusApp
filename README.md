@@ -15,7 +15,7 @@
   <br>
   
   <img src="https://img.shields.io/badge/Platform-iOS%20%7C%20iPadOS%20%7C%20macOS%20%7C%20watchOS-blue" alt="Platform iOS, iPadOS, macOS, watchOS">
-  <img src="https://img.shields.io/badge/Swift-5.10-orange" alt="Swift 5.10">
+  <img src="https://img.shields.io/badge/Swift-6.0-orange" alt="Swift 6.0">
   <img src="https://img.shields.io/badge/WeatherKit-Integrated-44CC11" alt="WeatherKit Integrated">
 </div>
 
