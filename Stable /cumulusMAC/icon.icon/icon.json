@@ -1,0 +1,73 @@
+{
+  "fill" : {
+    "linear-gradient" : [
+      "display-p3:0.41504,0.85742,0.80615,1.00000",
+      "display-p3:0.52148,0.29028,0.96484,1.00000"
+    ]
+  },
+  "groups" : [
+    {
+      "blend-mode" : "normal",
+      "blur-material" : 0.44,
+      "layers" : [
+        {
+          "blend-mode" : "normal",
+          "fill" : "automatic",
+          "image-name" : "cloud.png",
+          "name" : "cloud",
+          "position" : {
+            "scale" : 0.95,
+            "translation-in-points" : [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "shadow" : {
+        "kind" : "layer-color",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.5
+      }
+    },
+    {
+      "blur-material" : null,
+      "layers" : [
+        {
+          "fill" : {
+            "linear-gradient" : [
+              "display-p3:1.00000,0.68077,0.34195,1.00000",
+              "display-p3:1.00000,0.72870,0.25182,1.00000"
+            ]
+          },
+          "image-name" : "sun.png",
+          "name" : "sun",
+          "position" : {
+            "scale" : 0.95,
+            "translation-in-points" : [
+              -18.6640625,
+              -14.265625
+            ]
+          }
+        }
+      ],
+      "shadow" : {
+        "kind" : "layer-color",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.5
+      }
+    }
+  ],
+  "supported-platforms" : {
+    "circles" : [
+      "watchOS"
+    ],
+    "squares" : "shared"
+  }
+}
