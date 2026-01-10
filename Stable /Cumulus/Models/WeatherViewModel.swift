@@ -1,7 +1,6 @@
 import SwiftUI
 import WeatherKit
 import CoreLocation
-import WidgetKit
 
 
 
@@ -46,59 +45,8 @@ class WeatherViewModel: ObservableObject {
             sharedDefaults?.set(coords, forKey: "LastLocation")
             sharedDefaults?.synchronize()
             
-            // Save weather data for widget
-            saveWeatherForWidget(weather: weather)
-            
-            // Reload widgets
-            WidgetCenter.shared.reloadAllTimelines()
-            
         } catch {
             print("Error fetching weather: \(error)")
-        }
-    }
-    
-    // MARK: - Save weather data for widget
-    private func saveWeatherForWidget(weather: Weather) {
-        let current = weather.currentWeather
-        
-        // Determine if it's daytime
-        let isDaytime: Bool
-        if let sunrise = weather.dailyForecast.first?.sun.sunrise,
-           let sunset = weather.dailyForecast.first?.sun.sunset {
-            let now = Date()
-            isDaytime = now >= sunrise && now < sunset
-        } else {
-            isDaytime = true
-        }
-        
-        // Format sunrise/sunset times
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeStyle = .short
-        let sunrise = weather.dailyForecast.first?.sun.sunrise.map { dateFormatter.string(from: $0) }
-        let sunset = weather.dailyForecast.first?.sun.sunset.map { dateFormatter.string(from: $0) }
-        
-        let sharedWeather = SharedWeather(
-            temperature: current.temperature.value,
-            condition: current.condition.description,
-            symbolName: current.symbolName,
-            isDaytime: isDaytime,
-            location: cityName,
-            windSpeed: current.wind.speed.value,
-            humidity: current.humidity,
-            windDirection: current.wind.direction.value,
-            feelsLike: current.apparentTemperature.value,
-            visibility: current.visibility.value,
-            precipitation: weather.dailyForecast.first?.precipitationAmount.value,
-            pressure: current.pressure.value,
-            uvIndex: current.uvIndex.value,
-            sunrise: sunrise,
-            sunset: sunset
-        )
-        
-        // Save to shared defaults
-        if let data = try? JSONEncoder().encode(sharedWeather) {
-            sharedDefaults?.set(data, forKey: "currentWeather")
-            sharedDefaults?.synchronize()
         }
     }
     
