@@ -1,7 +1,8 @@
 import SwiftUI
+import WidgetKit
 
 struct WidgetSettingsView: View {
-    @AppStorage("widgetRefreshInterval") private var widgetRefreshInterval: Int = 30
+    @AppStorage("widgetRefreshInterval", store: UserDefaults(suiteName: "group.com.josh.cumulus")) private var widgetRefreshInterval: Int = 30
     var accentColor: Color
     
     let refreshOptions: [(label: String, minutes: Int)] = [
@@ -25,6 +26,7 @@ struct WidgetSettingsView: View {
                     object: nil,
                     userInfo: ["interval": newValue]
                 )
+                WidgetCenter.shared.reloadTimelines(ofKind: "WeatherWidget")
             }
             
         }

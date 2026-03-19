@@ -8,6 +8,8 @@ struct WeatherApp: App {
     @State private var showSplash = false
 
     init() {
+        migrateWidgetRefreshIntervalToAppGroupIfNeeded()
+
         let firstLaunch = !UserDefaults.standard.bool(forKey: "hasLaunchedBefore")
         let newVersion = AppVersionManager.isNewVersion()
 
@@ -52,6 +54,20 @@ struct WeatherApp: App {
                     .sheet(isPresented: $showWhatsNew) {
                         WhatsNewSheet(showSheet: $showWhatsNew)
                     }
+            }
+        }
+    }
+
+    private func migrateWidgetRefreshIntervalToAppGroupIfNeeded() {
+        guard let groupDefaults = UserDefaults(suiteName: "group.com.josh.cumulus") else {
+            return
+        }
+
+        if groupDefaults.object(forKey: "widgetRefreshInterval") == nil {
+            if let legacyValue = UserDefaults.standard.object(forKey: "widgetRefreshInterval") as? Int {
+                groupDefaults.set(legacyValue, forKey: "widgetRefreshInterval")
+            } else {
+                groupDefaults.set(30, forKey: "widgetRefreshInterval")
             }
         }
     }

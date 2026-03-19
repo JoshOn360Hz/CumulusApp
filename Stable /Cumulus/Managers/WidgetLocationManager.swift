@@ -16,6 +16,9 @@ class WidgetLocationManager: NSObject, CLLocationManagerDelegate {
     private let appGroupID = "group.com.josh.cumulus"
     private let weatherService = WeatherService()
     private var lastWeatherFetchDate: Date?
+    private var sharedDefaults: UserDefaults? {
+        UserDefaults(suiteName: appGroupID)
+    }
     
     override init() {
         super.init()
@@ -38,7 +41,7 @@ class WidgetLocationManager: NSObject, CLLocationManagerDelegate {
         // Restart monitoring if settings changed
         let status = manager.authorizationStatus
         if status == .authorizedAlways {
-            let interval = UserDefaults.standard.integer(forKey: "widgetRefreshInterval")
+            let interval = widgetRefreshInterval()
             if interval == 0 {
                 // Turned off
                 manager.stopMonitoringSignificantLocationChanges()
@@ -83,7 +86,7 @@ class WidgetLocationManager: NSObject, CLLocationManagerDelegate {
         guard let newestLocation = locations.last else { return }
         
         // Check if refresh is enabled
-        let refreshInterval = UserDefaults.standard.integer(forKey: "widgetRefreshInterval")
+        let refreshInterval = widgetRefreshInterval()
         guard refreshInterval > 0 else {
             print("Widget refresh is disabled")
             return
@@ -99,7 +102,7 @@ class WidgetLocationManager: NSObject, CLLocationManagerDelegate {
         }
         
         // Save location to shared UserDefaults for widget access
-        if let sharedDefaults = UserDefaults(suiteName: appGroupID) {
+        if let sharedDefaults {
             sharedDefaults.set(newestLocation.coordinate.latitude, forKey: "widget_location_latitude")
             sharedDefaults.set(newestLocation.coordinate.longitude, forKey: "widget_location_longitude")
             sharedDefaults.set(newestLocation.altitude, forKey: "widget_location_altitude")
@@ -180,10 +183,17 @@ class WidgetLocationManager: NSObject, CLLocationManagerDelegate {
         }
         return "Unknown"
     }
+
+    private func widgetRefreshInterval() -> Int {
+        if let value = sharedDefaults?.object(forKey: "widgetRefreshInterval") as? Int {
+            return value
+        }
+        return 30
+    }
     
     private func saveWeatherToSharedDefaults(weather: SharedWeather) {
         if let data = try? JSONEncoder().encode(weather),
-           let sharedDefaults = UserDefaults(suiteName: appGroupID) {
+           let sharedDefaults {
             sharedDefaults.set(data, forKey: "currentWeather")
             sharedDefaults.synchronize()
         }
