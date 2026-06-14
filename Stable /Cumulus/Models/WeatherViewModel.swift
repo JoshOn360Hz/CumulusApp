@@ -12,6 +12,9 @@ class WeatherViewModel: ObservableObject {
     @Published var forecastDays: [ForecastDay] = []
     @Published var hourlyForecast: [HourlyForecast] = []
     @Published var recentCities: [String] = []
+    @Published var moonPhase: MoonPhase? = nil
+    @Published var isRefreshing: Bool = false
+    private var lastFetchedLocation: CLLocation?
     private let sharedDefaults = UserDefaults(suiteName: "group.com.josh.cumulus")
     private let weatherService = WeatherService()
     
@@ -30,30 +33,39 @@ class WeatherViewModel: ObservableObject {
     
 
     func fetchWeather(for location: CLLocation) async {
+        isRefreshing = true
+        lastFetchedLocation = location
         do {
             let weather = try await weatherService.weather(for: location)
             self.weather = weather
-            
+
             await fetchCityName(for: location)
             if !cityName.isEmpty && cityName != "Unknown" {
                 insertCurrentCityAsFirst(cityName)
             }
-            
+
             updateForecast(from: weather)
             await fetchHourlyForecast(for: location)
+            await fetchMoonPhase(for: location)
             let coords = ["lat": location.coordinate.latitude, "lon": location.coordinate.longitude]
             sharedDefaults?.set(coords, forKey: "LastLocation")
             sharedDefaults?.synchronize()
-            
+
         } catch {
             print("Error fetching weather: \(error)")
         }
+        isRefreshing = false
+    }
+
+    func refresh() async {
+        guard let loc = lastFetchedLocation else { return }
+        await fetchWeather(for: loc)
     }
     
     
     func fetchHourlyForecast(for location: CLLocation) async {
         do {
-            let forecast = try await HourlyForecastHelper.fetchNext12Hours(using: weatherService, for: location)
+            let forecast = try await HourlyForecastHelper.fetchNext24Hours(using: weatherService, for: location)
             DispatchQueue.main.async {
                 self.hourlyForecast = forecast
             }
@@ -98,6 +110,20 @@ class WeatherViewModel: ObservableObject {
     
     private func updateForecast(from weather: Weather) {
         self.forecastDays = DailyForecastHelper.extractNext5Days(from: weather)
+    }
+
+    private func fetchMoonPhase(for location: CLLocation) async {
+        do {
+            let today = Date()
+            guard let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today) else { return }
+            let moonEvents = try await weatherService.weather(
+                for: location,
+                including: .daily(startDate: today, endDate: tomorrow)
+            )
+            self.moonPhase = moonEvents.first?.moon.phase
+        } catch {
+            print("Error fetching moon phase: \(error)")
+        }
     }
     
     

@@ -3,7 +3,8 @@ import SwiftUI
 struct UnitSettingsView: View {
     @Binding var temperatureUnit: String
     @Binding var windSpeedUnit: String
-    
+    @AppStorage("timeFormat") private var timeFormat: String = "12h"
+
     var body: some View {
         Section("Units") {
             Picker("Temperature", selection: $temperatureUnit) {
@@ -26,6 +27,12 @@ struct UnitSettingsView: View {
             .onChange(of: windSpeedUnit) { oldValue, newValue in
                 WatchConnectivityManager.shared.sendUnitsToWatch()
             }
+
+            Picker("Time Format", selection: $timeFormat) {
+                Text("12-hour").tag("12h")
+                Text("24-hour").tag("24h")
+            }
+            .pickerStyle(MenuPickerStyle())
         }
     }
 }

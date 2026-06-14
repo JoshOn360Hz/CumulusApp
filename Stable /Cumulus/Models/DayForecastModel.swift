@@ -15,4 +15,7 @@ struct ForecastDay: Identifiable {
     let day: String
     let iconName: String
     let highTemperature: Double
+    let lowTemperature: Double
+    let precipitationChance: Double
+    let date: Date
 }

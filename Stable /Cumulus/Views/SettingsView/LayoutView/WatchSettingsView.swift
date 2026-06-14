@@ -273,6 +273,11 @@ extension WeatherCardType {
         case .sunTimes: return "Sunrise and sunset times"
         case .forecast: return "5-day weather forecast"
         case .hourlyForecast: return "Next 12 hours forecast"
+        case .humidity: return "Current humidity level"
+        case .dewPoint: return "Dew point temperature"
+        case .cloudCover: return "Cloud cover percentage"
+        case .windGust: return "Wind gust speed"
+        case .moonPhase: return "Current moon phase"
         }
     }
 }

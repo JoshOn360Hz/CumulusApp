@@ -1,13 +1,12 @@
 import SwiftUI
 import WeatherKit
-import CoreLocation
 
-struct PressureMiniCardView: View {
-    let pressure: Measurement<UnitPressure>
+struct HumidityCardView: View {
+    let humidity: Double
+
+    private var humidityPercent: Int { Int(humidity * 100) }
+
     @AppStorage("accentColorName") private var accentColorName: String = "blue"
-
-    private let minPressure: Double = 950
-    private let maxPressure: Double = 1050
 
     private var accentColor: Color {
         switch accentColorName {
@@ -24,27 +23,13 @@ struct PressureMiniCardView: View {
         }
     }
 
-    private var pressureValue: Double { pressure.converted(to: .hectopascals).value }
-    private var pressurePercentage: Double {
-        let clamped = max(min(pressureValue, maxPressure), minPressure)
-        return (clamped - minPressure) / (maxPressure - minPressure)
-    }
-
-    private var trend: String {
-        switch pressureValue {
-        case ..<990: return "Low"
-        case 990..<1013: return "Normal"
-        default: return "High"
-        }
-    }
-
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack(spacing: 4) {
-                Image(systemName: "barometer")
+                Image(systemName: "humidity")
                     .font(.system(size: 11, weight: .semibold))
                     .foregroundColor(.white.opacity(0.6))
-                Text("PRESSURE")
+                Text("HUMIDITY")
                     .font(.system(size: 11, weight: .semibold))
                     .foregroundColor(.white.opacity(0.6))
                     .tracking(0.5)
@@ -54,17 +39,18 @@ struct PressureMiniCardView: View {
 
             Spacer()
 
-            Text("\(Int(pressureValue)) hPa")
-                .font(.system(size: 28, weight: .thin, design: .rounded))
+            Text("\(humidityPercent)%")
+                .font(.system(size: 36, weight: .thin, design: .rounded))
                 .foregroundColor(.white)
                 .padding(.horizontal, 14)
 
+            // Progress bar
             GeometryReader { geo in
                 ZStack(alignment: .leading) {
                     Capsule().fill(Color.white.opacity(0.15)).frame(height: 5)
                     Capsule()
                         .fill(accentColor)
-                        .frame(width: geo.size.width * CGFloat(pressurePercentage), height: 5)
+                        .frame(width: geo.size.width * CGFloat(humidity), height: 5)
                 }
             }
             .frame(height: 5)

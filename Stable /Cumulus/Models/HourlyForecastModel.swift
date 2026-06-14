@@ -14,4 +14,6 @@ struct HourlyForecast: Identifiable {
     let time: Date
     let symbolName: String
     let temperature: Double
+    let precipitationChance: Double
+    let windSpeed: Double
 }

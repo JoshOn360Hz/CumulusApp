@@ -18,12 +18,15 @@ struct DailyForecastHelper {
         
         return weather.dailyForecast
             .filter { calendar.startOfDay(for: $0.date) >= today }
-            .prefix(5)
+            .prefix(10)
             .compactMap { dayWeather in
                 ForecastDay(
                     day: formatter.string(from: dayWeather.date),
                     iconName: dayWeather.symbolName,
-                    highTemperature: dayWeather.highTemperature.value
+                    highTemperature: dayWeather.highTemperature.value,
+                    lowTemperature: dayWeather.lowTemperature.value,
+                    precipitationChance: dayWeather.precipitationChance,
+                    date: dayWeather.date
                 )
             }
     }

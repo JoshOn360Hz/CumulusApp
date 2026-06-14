@@ -1,18 +1,11 @@
-//
-//  CardReorderView.swift
-//  Cumulus
-//
-//  Created by Josh Mansfield on 11/06/2025.
-//
-
 import SwiftUI
 
 struct CardReorderView: View {
     @StateObject private var cardManager = WeatherCardManager()
     @Environment(\.presentationMode) var presentationMode
     @AppStorage("accentColorName") private var accentColorName: String = "blue"
-    
-    private var selectedAccentColor: Color {
+
+    private var accentColor: Color {
         switch accentColorName {
         case "red": return .red
         case "orange": return .orange
@@ -27,81 +20,87 @@ struct CardReorderView: View {
         default: return .blue
         }
     }
-    
+
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
-                VStack(alignment: .leading, spacing: 12) {
+                VStack(alignment: .leading, spacing: 8) {
                     Text("Customize Cards")
                         .font(.largeTitle)
                         .fontWeight(.bold)
-                    
-                    Text("Drag and drop to reorder your weather card groups. Small cards are automatically paired together for better layout.")
+                    Text("Drag to reorder. Tap the eye to show or hide a card.")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                         .fixedSize(horizontal: false, vertical: true)
                 }
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .leading)
+
                 List {
                     ForEach(cardManager.cardGroupOrder, id: \.id) { group in
-                        HStack {
-                            HStack(spacing: -8) {
+                        let visible = cardManager.isVisible(group)
+                        HStack(spacing: 14) {
+                            // Visibility toggle
+                            Button {
+                                withAnimation(.easeInOut(duration: 0.2)) {
+                                    cardManager.toggleVisibility(group)
+                                }
+                            } label: {
+                                Image(systemName: visible ? "eye.fill" : "eye.slash")
+                                    .font(.system(size: 16))
+                                    .foregroundColor(visible ? accentColor : .secondary.opacity(0.5))
+                                    .frame(width: 24)
+                            }
+                            .buttonStyle(.plain)
+
+                            // Icons
+                            HStack(spacing: -6) {
                                 ForEach(Array(group.iconNames.enumerated()), id: \.offset) { index, iconName in
                                     Image(systemName: iconName)
-                                        .foregroundColor(selectedAccentColor)
-                                        .frame(width: 20, height: 20)
+                                        .font(.system(size: 13))
+                                        .foregroundColor(visible ? accentColor : .secondary.opacity(0.4))
+                                        .frame(width: 22, height: 22)
                                         .background(
                                             Circle()
                                                 .fill(Color(UIColor.systemBackground))
-                                                .frame(width: 20, height: 20)
+                                                .frame(width: 22, height: 22)
                                         )
                                         .zIndex(Double(group.iconNames.count - index))
                                 }
                             }
-                            .frame(width: max(24, Double(group.iconNames.count) * 12 + 8))
-                            
+                            .frame(width: max(24, Double(group.iconNames.count) * 14 + 8))
+
+                            // Labels
                             VStack(alignment: .leading, spacing: 2) {
                                 Text(group.displayName)
                                     .font(.body)
-                                
-                                if group.isSmallGroup {
-                                    Text("Small Card Group (\(group.cards.count) cards)")
-                                        .font(.caption)
-                                        .foregroundColor(.secondary)
-                                } else {
-                                    Text("Large Card")
-                                        .font(.caption)
-                                        .foregroundColor(.secondary)
-                                }
+                                    .foregroundColor(visible ? .primary : .secondary)
+                                Text(group.isSmallGroup ? "Small card" : "Large card")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary.opacity(visible ? 1 : 0.5))
                             }
-                            
+
                             Spacer()
-                            
-                            Image(systemName: "line.3.horizontal")
-                                .foregroundColor(selectedAccentColor)
                         }
                         .padding(.vertical, 4)
+                        .opacity(visible ? 1 : 0.5)
                     }
                     .onMove(perform: cardManager.moveCardGroup)
                 }
-                .listStyle(PlainListStyle())
-                .scrollDisabled(true)
-                
-                Button(action: {
+                .listStyle(.plain)
+                .environment(\.editMode, .constant(.active))
+
+                Button {
                     cardManager.resetToDefault()
-                }) {
+                } label: {
                     HStack {
                         Image(systemName: "arrow.clockwise")
-                        Text("Reset to Default Order")
+                        Text("Reset to Default")
                     }
-                    .foregroundColor(selectedAccentColor)
+                    .foregroundColor(accentColor)
                     .padding()
                     .frame(maxWidth: .infinity)
-                    .background(
-                        RoundedRectangle(cornerRadius: 12)
-                            .fill(selectedAccentColor.opacity(0.1))
-                    )
+                    .background(RoundedRectangle(cornerRadius: 12).fill(accentColor.opacity(0.1)))
                 }
                 .padding()
             }
@@ -111,7 +110,7 @@ struct CardReorderView: View {
                     Button("Done") {
                         presentationMode.wrappedValue.dismiss()
                     }
-                    .foregroundColor(selectedAccentColor)
+                    .foregroundColor(accentColor)
                 }
             }
         }

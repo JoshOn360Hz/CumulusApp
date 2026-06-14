@@ -41,21 +41,20 @@ struct MainTabView: View {
                         .environmentObject(appStateManager)
                         .accentColor(.primary)
                 }
-                
+
                 Tab("Search", systemImage: "magnifyingglass", value: .search, role: .search) {
                     SearchTabView()
                         .environmentObject(appStateManager)
                 }
-                
+
                 Tab("Settings", systemImage: "gearshape", value: .settings) {
                     SettingsTabView(showSplash: $showSplash)
                 }
             }
-            
             .accentColor(accentColor)
             .preferredColorScheme(preferredColorScheme)
             .tabViewStyle(.tabBarOnly)
-            .onChange(of: appStateManager.selectedTab) { oldValue, newValue in }
+            .onChange(of: appStateManager.selectedTab) { _, _ in }
             .tabBarMinimizeBehavior(.onScrollDown)
         } else {
             TabView(selection: $appStateManager.selectedTab) {
@@ -64,21 +63,20 @@ struct MainTabView: View {
                         .environmentObject(appStateManager)
                         .accentColor(.primary)
                 }
-                
+
                 Tab("Search", systemImage: "magnifyingglass", value: .search, role: .search) {
                     SearchTabView()
                         .environmentObject(appStateManager)
                 }
-                
+
                 Tab("Settings", systemImage: "gearshape", value: .settings) {
                     SettingsTabView(showSplash: $showSplash)
                 }
             }
-            
             .accentColor(accentColor)
             .preferredColorScheme(preferredColorScheme)
             .tabViewStyle(.tabBarOnly)
-            .onChange(of: appStateManager.selectedTab) { oldValue, newValue in }
+            .onChange(of: appStateManager.selectedTab) { _, _ in }
         }
     }
 }
