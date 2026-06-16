@@ -1,7 +1,7 @@
 # Cumulus
 
 <div align="center">
-  <img src="Stable/Cumulus/Assets.xcassets/icon-default-preview.imageset/icon-iOS-Default-1024x1024@1x 1.png" width="120" height="120">
+  <img src="screenshots/logo-4.0.png" width="120" height="120">
   <br><br>
 
   <a href="https://apps.apple.com/gb/app/cumulus/id6742735497">
