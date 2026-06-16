@@ -1,7 +1,7 @@
 # Cumulus
 
 <div align="center">
-  <img src="Beta/Assets.xcassets/applogo.imageset/icon-glass-picker@3x.png" width="120" height="120">
+  <img src="Stable/Assets.xcassets/applogo.imageset/icon-glass-picker@3x.png" width="120" height="120">
   <br><br>
 
   <a href="https://apps.apple.com/gb/app/cumulus/id6742735497">
